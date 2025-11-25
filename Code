@@ -84,8 +84,8 @@ def password_generation():
                 print("Generated Password:-")
             else:
                 print("Generated Passwords:-")
-                for p in range(how_many_passwords):
-                    for l in range(how_long_the_passwords):
+                for p in range(how_many):
+                    for l in range(the_length):
                         password_character_choosing = random.choice(type_of_symbol)
                         
                         if password_character_choosing == "l":
