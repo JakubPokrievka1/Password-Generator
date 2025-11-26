@@ -95,7 +95,7 @@ def password_generation():
                         elif password_character_choosing== "i":
                             the_characters_for_password.append(random.choice("1234567890"))
                         else:
-                            the_characters_for_password.append(random.choice("!£$%^&*()_-=[]{.};:<>,.|\'@'?~#+/"))
+                            the_characters_for_password.append(random.choice("!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
                     
                     print(f"The password: {''.join(the_characters_for_password)}")
                     the_characters_for_password.clear()
