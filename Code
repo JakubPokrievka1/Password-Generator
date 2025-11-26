@@ -63,18 +63,18 @@ def password_generation():
         
         for i in range(2):
             if i == 0:
-                how_much = how_many_passwords()
+                the_amount_to_generate = how_many_passwords()
 
-                if how_much != "ValueError" and how_much != "KeyboardInterrupt":
-                    how_many += how_much
+                if the_amount_to_generate != "ValueError" and the_amount_to_generate != "KeyboardInterrupt":
+                    how_many += the_amount_to_generate
                 else:
                     generate = False
                     break 
             else:
-                how_many = how_long_passwords()
+                the_length_to_generate = how_long_passwords()
 
-                if how_many != "ValueError" and how_much != "KeyboardInterrupt":
-                    the_length += how_many 
+                if the_length_to_generate != "ValueError" and the_length_to_generate != "KeyboardInterrupt":
+                    the_length += the_length_to_generate 
                 else:
                     generate = False
                     break
