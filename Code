@@ -60,17 +60,13 @@ def how_long_passwords():
         return the_integer
 
 
-
-def password_generation():
-    import random
-    
+def error_handling():
     try:
-        the_characters_for_password = []
-        type_of_symbol = "luio"
         how_many = 0
         the_length = 0
-        generate = True
         
+        return_password = True
+
         for i in range(2):
             if i == 0:
                 the_amount_to_generate = how_many_passwords()
@@ -78,37 +74,55 @@ def password_generation():
                 if the_amount_to_generate != "ValueError" and the_amount_to_generate != "KeyboardInterrupt" and the_amount_to_generate != "LessThanOne":
                     how_many += the_amount_to_generate
                 else:
-                    generate = False
-                    break 
+                    return_password = False 
+                    break
+
             else:
                 the_length_to_generate = how_long_passwords()
 
                 if the_length_to_generate != "ValueError" and the_length_to_generate != "KeyboardInterrupt" and the_length_to_generate != "LessThanOne":
-                    the_length += the_length_to_generate 
+                    the_length += the_length_to_generate
                 else:
-                    generate = False
+                    return_password = False 
                     break
-                    
-        if generate == True:
-            if how_many_passwords == 1:
-                print("Generated Password:-")
-            else:
-                print("Generated Passwords:-")
-                for p in range(how_many):
-                    for l in range(the_length):
-                        password_character_choosing = random.choice(type_of_symbol)
+        
+        if return_password == True:
+            password_generation(how_many, the_length)
+        
+
+    except KeyboardInterrupt:
+        print("Keyboard Interrupt!")
+
+
+
+def password_generation(how_many, the_length):
+    import random
+    
+    try:
+        the_characters_for_password = []
+        type_of_symbol = "luio"
+        how_many = how_many
+        the_length = the_length
+
+        if how_many_passwords == 1:
+            print("Generated Password:-")
+        else:
+            print("Generated Passwords:-")
+            for p in range(how_many):
+                for l in range(the_length):
+                    password_character_choosing = random.choice(type_of_symbol)
                         
-                        if password_character_choosing == "l":
-                            the_characters_for_password.append(random.choice("qwertyuiopasdfghjklzxcvbnm"))
-                        elif password_character_choosing == "u":
-                            the_characters_for_password.append(random.choice("QWERTYUIOPASDFGHJKLZXCVBNM"))
-                        elif password_character_choosing== "i":
-                            the_characters_for_password.append(random.choice("1234567890"))
-                        else:
-                            the_characters_for_password.append(random.choice("!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
+                    if password_character_choosing == "l":
+                        the_characters_for_password.append(random.choice("qwertyuiopasdfghjklzxcvbnm"))
+                    elif password_character_choosing == "u":
+                        the_characters_for_password.append(random.choice("QWERTYUIOPASDFGHJKLZXCVBNM"))
+                    elif password_character_choosing== "i":
+                        the_characters_for_password.append(random.choice("1234567890"))
+                    else:
+                        the_characters_for_password.append(random.choice("!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
                     
-                    print(f"The password: {''.join(the_characters_for_password)}")
-                    the_characters_for_password.clear()
+                print(f"The password: {''.join(the_characters_for_password)}")
+                the_characters_for_password.clear()
     
     except KeyboardInterrupt:
         print("Keyboard Interrupt!")
@@ -116,7 +130,7 @@ def password_generation():
 
 
 def main():
-    password_generation()
+    error_handling()
 
 
 
