@@ -1,138 +1,66 @@
 #!/usr/bin/python3
 
-def input_validation():
-    try:
-        value = int(input(">> "))
-        return value
-
-    except ValueError:
-        return "ValueError"
-        
-    except KeyboardInterrupt:
-        return "KeyboardInterrupt"
-
-
-
-def how_many_passwords():
-    print("How many passwords do you want to generate?")
-    the_integer = input_validation()
-
-    if the_integer == "KeyboardInterrupt":
-        print("Keyboard Interrupt!")
-
-        return "KeyboardInterrupt"
-    
-    elif the_integer == "ValueError":
-        print("Error: Value Error")
-
-        return "ValueError"
-
-    elif the_integer <= 0:
-        print("Error: Value Cannot Be Less Than 1.")
-        
-        return "LessThanOne"
-    
-    else:
-        return the_integer
-
-
-
-def how_long_passwords():
-    print("How long should the generated passwords be?")
-    the_integer = input_validation()
-
-    if the_integer == "KeyboardInterrupt":
-        print("Keyboard Interrupt!")
-
-        return "KeyboardInterrupt"
-    
-    elif the_integer == "ValueError":
-        print("Error: Value Error")
-
-        return "ValueError"
-
-    elif the_integer <= 0:
-        print("Error: Value Cannot Be Less Than 1.")
-        
-        return "LessThanOne"
-    
-    else:
-        return the_integer
-
-
-def error_handling():
+def user_input():
     try:
         how_many = 0
         the_length = 0
-        
-        return_password = True
 
         for i in range(2):
             if i == 0:
-                the_amount_to_generate = how_many_passwords()
+                print("Enter how many passwords you want to generate.")
 
-                if the_amount_to_generate != "ValueError" and the_amount_to_generate != "KeyboardInterrupt" and the_amount_to_generate != "LessThanOne":
-                    how_many += the_amount_to_generate
-                else:
-                    return_password = False 
-                    break
-
+                the_amount_to_generate = int(input(">> "))
+                how_many += the_amount_to_generate
             else:
-                the_length_to_generate = how_long_passwords()
+                print("Enter how long the passwords should be.")
 
-                if the_length_to_generate != "ValueError" and the_length_to_generate != "KeyboardInterrupt" and the_length_to_generate != "LessThanOne":
-                    the_length += the_length_to_generate
-                else:
-                    return_password = False 
-                    break
+                the_length_to_generate = int(input(">> "))
+                the_length += the_length_to_generate
         
-        if return_password == True:
-            password_generation(how_many, the_length)
+        password_generation(how_many, the_length)
         
-
     except KeyboardInterrupt:
         print("Keyboard Interrupt!")
+    except ValueError:
+        print("Error: Value Error!")
 
 
 
 def password_generation(how_many, the_length):
     import random
-    
-    try:
-        the_characters_for_password = []
-        type_of_symbol = "luio"
-        how_many = how_many
-        the_length = the_length
 
-        if how_many_passwords == 1:
-            print("Generated Password:-")
-        else:
-            print("Generated Passwords:-")
-            for p in range(how_many):
-                for l in range(the_length):
-                    password_character_choosing = random.choice(type_of_symbol)
+    the_characters_for_password = []
+    type_of_symbol = "luio"
+    how_many = how_many
+    the_length = the_length
+
+    if how_many_passwords == 1:
+        print("Generated Password:-")
+    else:
+        print("Generated Passwords:-")
+        for p in range(how_many):
+            for l in range(the_length):
+                password_character_choosing = random.choice(type_of_symbol)
                         
-                    if password_character_choosing == "l":
-                        the_characters_for_password.append(random.choice("qwertyuiopasdfghjklzxcvbnm"))
-                    elif password_character_choosing == "u":
-                        the_characters_for_password.append(random.choice("QWERTYUIOPASDFGHJKLZXCVBNM"))
-                    elif password_character_choosing== "i":
-                        the_characters_for_password.append(random.choice("1234567890"))
-                    else:
-                        the_characters_for_password.append(random.choice("!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
+                if password_character_choosing == "l":
+                    the_characters_for_password.append(random.choice("qwertyuiopasdfghjklzxcvbnm"))
+                elif password_character_choosing == "u":
+                    the_characters_for_password.append(random.choice("QWERTYUIOPASDFGHJKLZXCVBNM"))
+                elif password_character_choosing== "i":
+                    the_characters_for_password.append(random.choice("1234567890"))
+                else:
+                    the_characters_for_password.append(random.choice("!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
                     
-                print(f"The password: {''.join(the_characters_for_password)}")
-                the_characters_for_password.clear()
+            print(f"The password: {''.join(the_characters_for_password)}")
+            the_characters_for_password.clear()
     
-    except KeyboardInterrupt:
-        print("Keyboard Interrupt!")
 
 
 
 def main():
-    error_handling()
+    user_input()
 
 
 
-main()
-
+if __name__ == "__main__":
+    main()
