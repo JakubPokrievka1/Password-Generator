@@ -30,29 +30,24 @@ def password_generation(how_many, the_length):
     import secrets
 
     the_characters_for_password = []
-    type_of_symbol = "luio"
+    run_password_generation = True
     how_many = how_many
     the_length = the_length
 
-    if how_many == 1:
-        print("Generated Password:-")
-    else:
-        print("Generated Passwords:-")
-        for p in range(how_many):
-            for l in range(the_length):
-                password_character_choosing = secrets.choice(type_of_symbol)
-                        
-                if password_character_choosing == "l":
-                    the_characters_for_password.append(secrets.choice("qwertyuiopasdfghjklzxcvbnm"))
-                elif password_character_choosing == "u":
-                    the_characters_for_password.append(secrets.choice("QWERTYUIOPASDFGHJKLZXCVBNM"))
-                elif password_character_choosing== "i":
-                    the_characters_for_password.append(secrets.choice("1234567890"))
-                else:
-                    the_characters_for_password.append(secrets.choice("!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
+    match how_many:
+        case 0:
+            run_password_generation = False
+        case 1:
+            print("Generated Password:-")
+        case _:
+            print("Generated Passwords:-")
+    
+    for p in range(how_many):
+        for l in range(the_length):
+            the_characters_for_password.append(secrets.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
                     
-            print(f"The password: {''.join(the_characters_for_password)}")
-            the_characters_for_password.clear()
+        print(f"The password: {''.join(the_characters_for_password)}")
+        the_characters_for_password.clear()
     
 
 
