@@ -6,16 +6,17 @@ def user_input():
         the_length = 0
 
         for i in range(2):
-            if i == 0:
-                print("Enter how many passwords you want to generate.")
-
-                the_amount_to_generate = int(input(">> "))
-                how_many += the_amount_to_generate
-            else:
-                print("Enter how long the passwords should be.")
-
-                the_length_to_generate = int(input(">> "))
-                the_length += the_length_to_generate
+            match i:
+                case 0:
+                    print("Enter how many passwords you want to generate.")
+    
+                    the_amount_to_generate = int(input(">> "))
+                    how_many += the_amount_to_generate
+                case 1:
+                    print("Enter how long the passwords should be.")
+    
+                    the_length_to_generate = int(input(">> "))
+                    the_length += the_length_to_generate
         
         password_generation(how_many, the_length)
         
@@ -34,20 +35,29 @@ def password_generation(how_many, the_length):
     how_many = how_many
     the_length = the_length
 
+    match the_length:
+        case 0:
+            run_password_generation = False
+    
     match how_many:
         case 0:
             run_password_generation = False
-        case 1:
-            print("Generated Password:-")
-        case _:
-            print("Generated Passwords:-")
-    
-    for p in range(how_many):
-        for l in range(the_length):
-            the_characters_for_password.append(secrets.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
-                    
-        print(f"The password: {''.join(the_characters_for_password)}")
-        the_characters_for_password.clear()
+
+    if run_password_generation == True:
+        match how_many:
+            case 1:
+                print("\nGenerated Password:-")
+            case _:
+                print("\nGenerated Passwords:-")
+        
+        for p in range(how_many):
+            for l in range(the_length):
+                the_characters_for_password.append(secrets.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
+                        
+            print(f"The password: {''.join(the_characters_for_password)}")
+            the_characters_for_password.clear()
+    else:
+        print("\nOne, or both two of these conditions were met: \n1) The number of passwords was entered as 0. \n2) The length of the passwords was entered as 0. \nNothing to generate.")
     
 
 
