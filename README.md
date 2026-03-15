@@ -6,6 +6,7 @@ On Linux, the script is the easiest to be executed via the terminal, using eithe
 However, this script can be ran in a IDE of your choice on Linux if you wish to do so. 
 
 On Windows/MacOS, the Python script is best ran in a IDE.
+    
     Copyright (C) 2026  Jakub Pokrievka
 
     This program is free software: you can redistribute it and/or modify
