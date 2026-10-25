@@ -1,69 +1,76 @@
 #!/usr/bin/python3
 
-def user_input():
-    try:
-        how_many = 0
-        the_length = 0
+import time
+import string
+import secrets
 
-        for i in range(2):
-            match i:
-                case 0:
-                    print("Enter how many passwords you want to generate.")
+def user_input():
+    how_many = 0
+    the_length = 0
+
     
-                    the_amount_to_generate = int(input(">> "))
-                    how_many += the_amount_to_generate
-                case 1:
-                    print("Enter how long the passwords should be.")
+    print("Enter how many passwords you want to generate.")
     
-                    the_length_to_generate = int(input(">> "))
-                    the_length += the_length_to_generate
-        
+    the_amount_to_generate = int(input(">> "))
+    how_many += the_amount_to_generate
+    
+    print("Enter how long the passwords should be.")
+    
+    the_length_to_generate = int(input(">> "))
+    the_length += the_length_to_generate
+
+    
+    validation(how_many, the_length)
+
+
+
+def validation(how_many, the_length):
+    if how_many <= 0 or the_length <= 0:
+        print("\nOne, or both two of these conditions were met: \n1) The number of passwords was entered as 0 or lower. \n2) The length of the passwords was entered as 0 or lower. \nNothing to generate.")
+    
+    else:
         password_generation(how_many, the_length)
-        
-    except KeyboardInterrupt:
-        print("Keyboard Interrupt!")
-    except ValueError:
-        print("Error: Value Error!")
 
 
 
 def password_generation(how_many, the_length):
-    import secrets
-
+    the_symbols = string.ascii_letters + string.digits + string.punctuation
+    
     the_characters_for_password = []
-    run_password_generation = True
     how_many = how_many
     the_length = the_length
-
-    match the_length:
-        case 0:
-            run_password_generation = False
+    
+    start = time.perf_counter()
     
     match how_many:
-        case 0:
-            run_password_generation = False
-
-    if run_password_generation == True:
-        match how_many:
-            case 1:
-                print("\nGenerated Password:-")
-            case _:
-                print("\nGenerated Passwords:-")
+        case 1:
+            print("\nPassword Generated:-")
         
-        for p in range(how_many):
-            for l in range(the_length):
-                the_characters_for_password.append(secrets.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!£$%^&*()_-=[]{.};:<>,.|'@'?~#+/"))
-                        
-            print(f"The password: {''.join(the_characters_for_password)}")
-            the_characters_for_password.clear()
-    else:
-        print("\nOne, or both two of these conditions were met: \n1) The number of passwords was entered as 0. \n2) The length of the passwords was entered as 0. \nNothing to generate.")
+        case _:
+            print("\nPasswords Generated:-")
     
+    
+    for p in range(how_many):
+        for l in range(the_length):
+            the_characters_for_password.append(secrets.choice(the_symbols))
+                        
+        print(f"The password: {''.join(the_characters_for_password)}")
+        the_characters_for_password.clear()
+    
+    end = time.perf_counter()
+    print(f"\nTime To Execute The Random Password Generation Algorithm: {end - start} seconds.")
 
 
 
 def main():
-    user_input()
+    try:
+        user_input()
+    
+    except KeyboardInterrupt:
+        print("KEYBOARD INTERRUPT!\nPROGRAM INTERRUPTED BY USER!")
+
+    except ValueError:
+        print("ERROR: EXCEPTED VALUE AS INTEGER! GOT NONE!")
 
 
 
